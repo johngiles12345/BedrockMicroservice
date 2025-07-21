@@ -239,8 +239,8 @@ resource "aws_api_gateway_method_response" "bedrock_response_200" {
   http_method = aws_api_gateway_method.bedrock_method.http_method
   status_code = "200"
 
-  response_headers = {
-    "Access-Control-Allow-Origin" = true
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
 
   response_models = {
@@ -255,8 +255,8 @@ resource "aws_api_gateway_integration_response" "bedrock_integration_response" {
   http_method = aws_api_gateway_method.bedrock_method.http_method
   status_code = aws_api_gateway_method_response.bedrock_response_200.status_code
 
-  response_headers = {
-    "Access-Control-Allow-Origin" = "'*'"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
   }
 
   depends_on = [aws_api_gateway_integration.bedrock_integration]
