@@ -89,7 +89,6 @@ resource "aws_lambda_function" "bedrock_lambda" {
   environment {
     variables = {
       BEDROCK_MODEL_ID = var.bedrock_model_id
-      AWS_REGION      = var.aws_region
     }
   }
 
@@ -193,7 +192,6 @@ resource "aws_api_gateway_deployment" "bedrock_deployment" {
   ]
 
   rest_api_id = aws_api_gateway_rest_api.bedrock_api.id
-  stage_name  = var.api_stage_name
 
   lifecycle {
     create_before_destroy = true
